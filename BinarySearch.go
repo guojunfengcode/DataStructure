@@ -24,7 +24,6 @@ func QuickSort(values []int) []int{
 			} else {
 				mid = append(mid, values[i])
 			}
-			num++
 		}
 		low, high = QuickSort(low), QuickSort(high)
 		arr = append(append(low, mid...), high...)
