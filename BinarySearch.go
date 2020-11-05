@@ -32,6 +32,37 @@ func QuickSort(values []int) []int{
 	return values	
 }
 
+func quickSort_o(values []int, start, end int) {
+	if start < end {
+		left := start
+		right := end
+
+		m := (start + end) / 2
+		if values[start] > values[end] {
+			values[start], values[end] = values[end], values[start]
+		}
+		if values[m] > values[end] {
+			values[m], values[end] = values[end], values[m]
+		}
+		if values[m] > values[start] {
+			values[m], values[start] = values[start], values[m]
+		}
+		temp := values[start]
+		for left < right {
+			for left < right && values[right] >= temp {
+				right--
+			}
+			for left < right && values[left] <= temp {
+				left++
+			}
+			values[left], values[right] = values[right], values[left]
+		}
+		values[start], values[left] = values[left], values[start]
+		quickSort(values, start, left-1)
+		quickSort(values, left+1, end)
+	}
+}
+
 func BinarySearch(arr []int, data int) int {
 	left := 0
 	right := len(arr) - 1
